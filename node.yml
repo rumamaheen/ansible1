@@ -10,6 +10,7 @@
   become: yes
   vars:
     folderpath: /home/ansible/nodesetup
+    app_ip : 172.31.20.196
   tasks :
   - name: creating nodejs directory
     file:
