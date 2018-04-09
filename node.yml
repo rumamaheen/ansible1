@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become : yes
+  tasks:
+  - name:
+    apt:
+      update_cache: yes
+
+- hosts: app
+  become: yes
+  vars:
+    folderpath: /home/ansible/nodesetup
+  tasks :
+  - name: creating nodejs directory
+    file:
+      path: "{{ folderpath }}"
+      state : directory
+      mode : 0755
+  - name: download node js app
+    command : "curl -sL https://deb.nodesource.com/setup_8.x -o {{folderpath}}/nodesource_setup.sh "
+  - name: execute  download shell script
+    command : "sudo bash {{folderpath}}/nodesource_setup.sh"
+  - name: isntall node js
+    apt:
+      name: nodejs
+      state: present
