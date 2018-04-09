@@ -44,12 +44,12 @@
     apt:
       name: nginx
       state: present
- - name : copy default file
+  - name : copy default file
    template: 
      src: "templates/default.j2"
      dest: "/etc/nginx/sites-available/default"
    notify : restart
- - name : restart nginx
+  - name : restart nginx
    service :
      name : nginx
      state : restarted
