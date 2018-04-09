@@ -48,9 +48,9 @@
     template: 
       src: "templates/default.j2"
       dest: "/etc/nginx/sites-available/default"
-    notify : restart
+    notify : Restart Nginx
   handlers:
-  - name : restart nginx
+  - name : Restart Nginx
     service :
       name : nginx
       state : restarted
