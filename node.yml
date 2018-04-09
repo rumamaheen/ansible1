@@ -24,3 +24,32 @@
     apt:
       name: nodejs
       state: present
+  - name:
+    template:
+      src : "templates/hello.js.j2"
+      dest : "{{folderpath}}/hello.js"
+  - name: install pm2
+    npm :
+      name : pm2
+      global : yes
+  - name : start nodejs app
+    command: "pm2 start {{folderpath}}/hello.js"
+- hosts : web
+  become : yes 
+  vars :
+    webserver_dns_name : "ec2-54-201-6-109.us-west-2.compute.amazonaws.com"
+    app_server : "ec2-54-190-43-41.us-west-2.compute.amazonaws.com"
+  tasks :
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+ - name : copy default file
+   template: 
+     src: "templates/default.j2"
+     dest: "/etc/nginx/sites-available/default"
+   notify : restart
+ - name : restart nginx
+   service :
+     name : nginx
+     state : restarted
