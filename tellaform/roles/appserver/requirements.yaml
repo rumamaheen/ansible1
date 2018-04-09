@@ -1,0 +1,3 @@
+# from galaxy
+- src: jpnewman.redis
+- src: Stouts.mongodb

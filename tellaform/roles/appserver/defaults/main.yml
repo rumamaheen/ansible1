@@ -1,2 +1,5 @@
 ---
 # defaults file for appserver
+folderpath: /home/ansible/nodesetup
+app_ip : 172.31.20.196
+version : 6
