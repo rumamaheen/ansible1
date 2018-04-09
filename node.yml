@@ -38,7 +38,7 @@
   become : yes 
   vars :
     webserver_dns_name : "ec2-54-201-6-109.us-west-2.compute.amazonaws.com"
-    app_server : "ec2-54-190-43-41.us-west-2.compute.amazonaws.com"
+    app_server : 172.31.20.196
   tasks :
   - name: install nginx
     apt:
